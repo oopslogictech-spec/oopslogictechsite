@@ -163,7 +163,7 @@ const socialLinks = [
                       href="tel:+919876543210"
                       className="font-medium text-slate-200 transition-colors hover:text-white"
                     >
-                      +91 98765 43210
+                      +91 6369868846
                     </a>
                   </div>
                 </div>
@@ -173,10 +173,10 @@ const socialLinks = [
                   <div>
                     <div className="mb-1 text-sm text-slate-400">Email</div>
                     <a
-                      href="mailto:contact@oopslogic.com"
+                      href="mailto:oopslogictech@gmail.com"
                       className="font-medium text-slate-200 transition-colors hover:text-white"
                     >
-                      contact@oopslogic.com
+                      oopslogictech@gmail.com
                     </a>
                   </div>
                 </div>
