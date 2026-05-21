@@ -214,7 +214,7 @@ export default function Hero() {
 
         {/* 🔥 WhatsApp CTA */}
         <a
-          href="https://wa.me/916369868846?text=Hi%20I%20am%20interested%20in%20free"
+          href="https://wa.me/916369868846?text=Hi%20I%20am%20interested%20in%20free%20demo"
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-full shadow-lg"
