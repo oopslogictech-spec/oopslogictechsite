@@ -1,177 +1,427 @@
-import { useEffect, useState } from 'react';
-import { Menu, X, ChevronRight, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Menu,
+  X,
+  ArrowRight,
+  Home,
+  Info,
+  Briefcase,
+  GraduationCap,
+  Phone,
+} from "lucide-react";
+
 import OopsLogicLogo from "../assets/OopsLogicLogo.png";
 
-export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('#home');
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const menuItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'Services', href: '#services' },
-    { label: 'Courses', href: '#courses' },
-    { label: 'Contact', href: '#contact' },
-  ];
+  const location = useLocation();
 
-  // 🔥 Smooth Scroll Function (FIXED)
-  const scrollToSection = (e, href) => {
-    e.preventDefault();
-
-    const element = document.querySelector(href);
-    if (!element) return;
-
-    const yOffset = -100; // navbar height
-    const y =
-      element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-    window.scrollTo({ top: y, behavior: 'smooth' });
-
-    setActiveSection(href);
-    setIsMobileMenuOpen(false);
-  };
-
-  // 🔥 Scroll Spy (IMPROVED)
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      let current = '#home';
-
-      for (let item of menuItems) {
-        const section = document.querySelector(item.href);
-        if (!section) continue;
-
-        const rect = section.getBoundingClientRect();
-
-        if (rect.top <= 150 && rect.bottom >= 150) {
-          current = item.href;
-          break;
-        }
-      }
-
-      setActiveSection(current);
+      setScrolled(window.scrollY > 20);
     };
 
-    const throttledScroll = () => {
-      requestAnimationFrame(handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll);
 
-    window.addEventListener('scroll', throttledScroll);
-
-    return () => window.removeEventListener('scroll', throttledScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔥 Prevent body scroll when menu open
+
+  // Close mobile menu after route change
   useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : 'auto';
-  }, [isMobileMenuOpen]);
+    setIsOpen(false);
+  }, [location.pathname]);
+
+
+  const navLinks = [
+    {
+      name: "Home",
+      path: "/",
+      icon: <Home size={18} />,
+    },
+    {
+      name: "About",
+      path: "/about",
+      icon: <Info size={18} />,
+    },
+    {
+      name: "Services",
+      path: "/services",
+      icon: <Briefcase size={18} />,
+    },
+    {
+      name: "Courses",
+      path: "/courses",
+      icon: <GraduationCap size={18} />,
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: <Phone size={18} />,
+    },
+  ];
+
 
   return (
-    <>
-      {/* Top Strip */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-2 px-4 py-2 text-sm font-medium">
-          <Sparkles className="h-4 w-4 text-yellow-300" />
-          Free Demo Class Available • New Batch Starts Soon
+    <header className="fixed top-3 sm:top-5 left-0 w-full z-50 px-3 sm:px-5">
+
+      <div className="max-w-7xl mx-auto">
+
+        <div
+          className={`
+          rounded-2xl border border-white/40 backdrop-blur-xl
+          transition-all duration-300
+          ${
+            scrolled
+            ? "bg-white/95 shadow-2xl"
+            : "bg-white/80 shadow-xl"
+          }
+          `}
+        >
+
+
+          {/* Main Navbar */}
+
+          <div className="flex items-center justify-between 
+          h-16 sm:h-20 px-4 sm:px-6">
+
+
+            {/* Logo */}
+
+            <Link
+              to="/"
+              className="flex items-center gap-2 sm:gap-3"
+            >
+
+              <img
+                src={OopsLogicLogo}
+                alt="Oops Logic"
+                className="
+                w-10
+                sm:w-12
+                lg:w-14
+                transition-transform
+                duration-300
+                hover:rotate-6
+                "
+              />
+
+
+              <div className="leading-tight">
+
+                <h2
+                  className="
+                  text-lg
+                  sm:text-xl
+                  font-bold
+                  text-slate-900
+                  "
+                >
+                  Oops
+                  <span className="text-blue-600">
+                    {" "}Logic
+                  </span>
+                </h2>
+
+
+                <p
+                  className="
+                  hidden
+                  sm:block
+                  text-[11px]
+                  sm:text-xs
+                  text-slate-500
+                  "
+                >
+                  Technologies & Learning center
+                </p>
+
+              </div>
+
+            </Link>
+
+
+
+            {/* Desktop Navigation */}
+
+            <nav
+              className="
+              hidden
+              lg:flex
+              items-center
+              gap-1
+              xl:gap-2
+              "
+            >
+
+              {
+                navLinks.map((item)=>(
+
+                  <Link
+                    key={item.name}
+                    to={item.path}
+
+                    className={`
+                    flex items-center gap-2
+                    px-4
+                    xl:px-5
+                    py-3
+                    rounded-full
+                    text-sm
+                    xl:text-base
+                    font-medium
+                    transition-all duration-300
+
+                    ${
+                      location.pathname === item.path
+                      ?
+                      "bg-blue-600 text-white shadow-lg"
+                      :
+                      "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+                    }
+
+                    `}
+                  >
+
+                    {item.icon}
+
+                    {item.name}
+
+                  </Link>
+
+                ))
+              }
+
+            </nav>
+
+
+
+            {/* Desktop CTA */}
+
+            <div className="hidden lg:block">
+
+              <a
+                href="https://wa.me/916369868846"
+                target="_blank"
+                rel="noopener noreferrer"
+
+                className="
+                group
+                flex
+                items-center
+                gap-2
+                rounded-full
+                bg-gradient-to-r
+                from-blue-600
+                to-cyan-500
+                px-5
+                xl:px-6
+                py-3
+                text-sm
+                xl:text-base
+                font-semibold
+                text-white
+                shadow-lg
+                transition
+                hover:scale-105
+                "
+              >
+
+                Free Consultation
+
+
+                <ArrowRight
+                  size={18}
+                  className="
+                  transition
+                  group-hover:translate-x-1
+                  "
+                />
+
+              </a>
+
+            </div>
+
+
+
+            {/* Mobile Button */}
+
+            <button
+
+              onClick={()=>setIsOpen(!isOpen)}
+
+              className="
+              lg:hidden
+              w-10
+              h-10
+              sm:w-11
+              sm:h-11
+              rounded-full
+              bg-slate-100
+              flex
+              items-center
+              justify-center
+              hover:bg-blue-100
+              transition
+              "
+
+            >
+
+              {
+                isOpen
+                ?
+                <X size={23}/>
+                :
+                <Menu size={23}/>
+              }
+
+
+            </button>
+
+
+
+          </div>
+
+
+
+
+
+          {/* Mobile Menu */}
+
+          <div
+            className={`
+            lg:hidden
+            overflow-hidden
+            transition-all
+            duration-500
+
+            ${
+              isOpen
+              ?
+              "max-h-[700px] opacity-100"
+              :
+              "max-h-0 opacity-0"
+            }
+
+            `}
+          >
+
+            <div
+              className="
+              border-t
+              border-slate-200
+              bg-white
+              rounded-b-2xl
+              px-4
+              py-5
+              "
+            >
+
+
+              {
+                navLinks.map((item)=>(
+
+                  <Link
+
+                    key={item.name}
+
+                    to={item.path}
+
+                    className={`
+                    flex
+                    items-center
+                    gap-3
+                    px-4
+                    py-3.5
+                    mb-2
+                    rounded-xl
+                    font-medium
+                    transition
+
+                    ${
+                      location.pathname===item.path
+
+                      ?
+
+                      "bg-blue-600 text-white"
+
+                      :
+
+                      "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+
+                    }
+
+                    `}
+
+                  >
+
+                    {item.icon}
+
+                    {item.name}
+
+                  </Link>
+
+
+                ))
+              }
+
+
+
+              {/* Mobile WhatsApp CTA */}
+
+              <a
+
+                href="https://wa.me/916369868846"
+
+                target="_blank"
+
+                rel="noopener noreferrer"
+
+                className="
+                mt-4
+                w-full
+                flex
+                items-center
+                justify-center
+                gap-2
+                rounded-xl
+                bg-gradient-to-r
+                from-blue-600
+                to-cyan-500
+                py-4
+                font-semibold
+                text-white
+                transition
+                hover:scale-[1.02]
+                "
+
+              >
+
+                Free Consultation
+
+                <ArrowRight size={18}/>
+
+              </a>
+
+
+            </div>
+
+
+          </div>
+
+
         </div>
+
+
       </div>
 
-      {/* Navbar */}
-      <nav
-        className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'top-10 bg-white/80 backdrop-blur-xl shadow-md py-3'
-            : 'top-10 bg-transparent py-5'
-        }`}
-      >
-        <div className="mx-auto max-w-7xl px-4 flex justify-between items-center">
 
-          {/* Logo */}
-          <a
-            href="#home"
-            onClick={(e) => scrollToSection(e, '#home')}
-            className="flex items-center gap-3"
-          >
-            <img src={OopsLogicLogo} className="h-10" />
-            <div>
-              <p className="font-bold">Oops Logic</p>
-              <span className="text-xs text-gray-500">
-                Learn • Build • Grow
-              </span>
-            </div>
-          </a>
-
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-2 bg-white/70 backdrop-blur rounded-full p-2">
-            {menuItems.map((item) => {
-              const isActive = activeSection === item.href;
-
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
-                  className={`relative px-4 py-2 rounded-full text-sm font-semibold ${
-                    isActive ? 'text-white' : 'text-gray-600'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="pill"
-                      className="absolute inset-0 bg-blue-600 rounded-full"
-                    />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </a>
-              );
-            })}
-          </div>
-
-          {/* CTA */}
-          <div className="hidden lg:block">
-            <a
-              href="#contact"
-              onClick={(e) => scrollToSection(e, '#contact')}
-              className="bg-blue-600 text-white px-5 py-2 rounded-full flex items-center gap-2"
-            >
-              Book Demo <ChevronRight size={18} />
-            </a>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden"
-          >
-            {isMobileMenuOpen ? <X /> : <Menu />}
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="fixed top-24 left-4 right-4 bg-white rounded-xl shadow-lg p-5 z-50"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-          >
-            {menuItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className="block py-3 font-semibold border-b"
-              >
-                {item.label}
-              </a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+    </header>
   );
-}
+};
+
+
+export default Navbar;

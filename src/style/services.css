@@ -1,0 +1,104 @@
+/* Floating Animation */
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-18px);
+    }
+
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: .5s;
+}
+
+.animate-float-delay-2 {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+.animate-float-delay-3 {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 1.5s;
+}
+
+.animate-float-delay-4 {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+.animate-float-delay-5 {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 2.5s;
+}
+
+/* Rotate */
+
+@keyframes rotateSlow {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+.animate-rotate-slow {
+
+    animation: rotateSlow 45s linear infinite;
+
+}
+
+.animate-rotate-reverse {
+
+    animation: rotateSlow 60s linear infinite reverse;
+
+}
+
+/* Glow */
+
+@keyframes pulseGlow {
+
+    0% {
+        box-shadow: 0 0 0 rgba(34,211,238,.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(34,211,238,.55);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(34,211,238,.3);
+    }
+
+}
+
+.animate-glow {
+
+    animation: pulseGlow 3s ease infinite;
+
+}
+
+/* Gradient */
+
+.hero-gradient{
+
+background:
+radial-gradient(circle at top left,#0ea5e955,transparent 40%),
+radial-gradient(circle at bottom right,#2563eb55,transparent 35%),
+linear-gradient(135deg,#08162B,#0B2142,#10345F);
+
+}

@@ -1,29 +1,48 @@
-import React from 'react';
-import Navbar from './Components/Navbar';
-import Hero from './Components/Hero';
-import Services from './Components/Services';
-import Courses from './Components/Courses';
-import Contact from './Components/Contact';
-import Footer from './Components/Footer';
+import { Routes, Route } from "react-router-dom";
 
-const App = () => {
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Courses from "./pages/Courses";
+import Contacts from "./pages/Contacts";
+
+export default function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-slate-900 antialiased">
-      {/* Navbar */}
+    <div className="min-h-screen bg-[#050816] text-white overflow-x-hidden">
+
       <Navbar />
 
-      {/* Main Content */}
-      <main className="relative">
-        <Hero />
-        <Services />
-        <Courses />
-        <Contact />
-      </main>
+      <Routes>
 
-      {/* Footer */}
+        <Route
+          path="/"
+          element={<Home />}
+        />
+
+        <Route
+          path="/about"
+          element={<About />}
+        />
+         <Route
+          path="/services"
+          element={<Services />}
+        />
+  <Route
+          path="/courses"
+          element={<Courses />}
+        />
+<Route
+          path="/contact"
+          element={<Contacts />}
+        />
+
+      </Routes>
+
       <Footer />
+
     </div>
   );
-};
-
-export default App;
+}

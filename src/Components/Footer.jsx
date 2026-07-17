@@ -2,14 +2,17 @@ import {
   Mail,
   Phone,
   MapPin,
-  Camera,
-  Play,
-  BriefcaseBusiness,
-  Globe,
   ArrowUpRight,
   ChevronRight,
   Sparkles,
-} from 'lucide-react';
+  Code2,
+  GraduationCap,
+  Briefcase,
+  Globe,
+  Award,
+  Users,
+  ArrowUp,
+} from "lucide-react";
 
 import {
   FaInstagram,
@@ -18,286 +21,477 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
+import { motion } from "framer-motion";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const services = [
-    'Web Development',
-    'App Development',
-    'UI/UX Design',
-    'Automation Testing',
-    'Corporate Training',
-    'Data Analytics',
-    'Data Science',
+    "Custom Software Development",
+    "Website Development",
+    "Mobile App Development",
+    "UI/UX Design",
+    "AI & Automation",
+    "Cloud Solutions",
   ];
 
   const courses = [
-    'Python Full Stack',
-    'Java Full Stack',
-    'MySQL / Database',
-    'Data Science',
-    'Data Analytics',
-    'Interview Preparation',
+    "Python Full Stack",
+    "Java Full Stack",
+    "Data Science",
+    "Data Analytics",
+    "MERN Stack",
+    "Interview Preparation",
   ];
 
+  const quickLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Courses", href: "/courses" },
+    { name: "Contact", href: "/contact" },
+  ];
 
+  const technologies = [
+    "React",
+    "Python",
+    "Java",
+    "Node.js",
+    "AWS",
+    "Docker",
+    "AI",
+    "MySQL",
+  ];
 
-const socialLinks = [
-  { icon: FaInstagram, href: '#', label: 'Instagram' },
-  { icon: FaFacebookF, href: '#', label: 'Facebook' },
-  { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-  { icon: FaYoutube, href: '#', label: 'YouTube' },
-];
+  const socialLinks = [
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/oopslogictech/",
+      color: "hover:bg-pink-500",
+    },
+    {
+      icon: FaFacebookF,
+      href: "#",
+      color: "hover:bg-blue-600",
+    },
+    {
+      icon: FaLinkedinIn,
+      href: "#",
+      color: "hover:bg-sky-600",
+    },
+    {
+      icon: FaYoutube,
+      href: "#",
+      color: "hover:bg-red-600",
+    },
+ 
+  ];
 
   return (
-    <footer className="relative overflow-hidden bg-[#07111f] text-white pt-20 pb-8">
-      {/* Background Effects */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-[-6rem] top-10 h-72 w-72 rounded-full bg-[#2563eb]/20 blur-3xl" />
-        <div className="absolute right-[-5rem] top-20 h-64 w-64 rounded-full bg-[#7c3aed]/15 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-[#06b6d4]/10 blur-3xl" />
+    <footer className="relative overflow-hidden bg-[#040816] text-white">
+
+      {/* ================= BACKGROUND ================= */}
+
+      <div className="absolute inset-0">
+
+        <div className="absolute -left-32 top-0 h-[450px] w-[450px] rounded-full bg-blue-600/20 blur-[170px]" />
+
+        <div className="absolute right-[-120px] top-24 h-[420px] w-[420px] rounded-full bg-cyan-500/20 blur-[170px]" />
+
+        <div className="absolute bottom-[-180px] left-1/2 h-[380px] w-[380px] -translate-x-1/2 rounded-full bg-violet-600/15 blur-[170px]" />
 
         <div
-          className="absolute inset-0 opacity-[0.04]"
+          className="absolute inset-0 opacity-[0.05]"
           style={{
             backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
-            backgroundSize: '36px 36px',
+              "radial-gradient(#38bdf8 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
         />
+
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
-        {/* Top CTA */}
-        <div className="mb-14 overflow-hidden rounded-[32px] border border-white/10 bg-white/[0.04] backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.18)]">
-          <div className="flex flex-col gap-6 px-6 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
-            <div className="max-w-2xl">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-400/20 bg-blue-500/10 px-4 py-2 text-sm font-semibold text-blue-300">
-                <Sparkles className="h-4 w-4" />
-                Oops Logic
-              </div>
+      <div className="relative z-10">
 
-              <h2
-                className="text-3xl font-bold leading-tight text-white lg:text-4xl"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                Build Skills, Launch Careers, and Create Better Products
-              </h2>
 
-              <p className="mt-4 max-w-2xl text-base leading-7 text-slate-300">
-                We help students, professionals, and businesses with modern IT
-                training, full stack development, automation, and data-driven solutions.
-              </p>
-            </div>
+      {/* ================= MAIN FOOTER ================= */}
 
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 self-start rounded-2xl bg-gradient-to-r from-[#2563eb] via-[#3b82f6] to-[#06b6d4] px-7 py-4 font-semibold text-white shadow-[0_18px_40px_rgba(37,99,235,0.30)] transition-all duration-300 hover:scale-105"
-            >
-              Contact Us
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
+    {/* ================= MAIN FOOTER ================= */}
+
+<section className="mx-auto mt-20 max-w-7xl px-6 pb-20">
+
+  {/* 3 Equal Columns */}
+  <div className="grid gap-8 lg:grid-cols-3 items-start">
+
+    {/* ========================================= */}
+    {/* COMPANY */}
+    {/* ========================================= */}
+
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="group rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden"
+    >
+
+      {/* Top Gradient */}
+
+      <div className="h-2 bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600" />
+
+      <div className="p-8">
+
+        {/* Logo */}
+
+        <div className="flex items-center gap-5">
+
+          <div
+            className="
+            flex h-20 w-20 items-center justify-center
+            rounded-3xl
+            bg-gradient-to-br
+            from-cyan-500
+            via-blue-600
+            to-violet-600
+            shadow-2xl
+            shadow-cyan-500/20
+            transition
+            duration-500
+            group-hover:rotate-6
+            group-hover:scale-105
+          "
+          >
+            <Code2 size={34} className="text-white" />
           </div>
+
+          <div>
+
+            <h2 className="text-3xl font-extrabold text-white">
+              Oops Logic
+            </h2>
+
+            <p className="mt-1 text-cyan-300">
+              Software • AI • Training
+            </p>
+
+          </div>
+
         </div>
 
-        {/* Main Grid */}
-        <div className="grid gap-8 lg:grid-cols-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-4">
-            <div className="rounded-[28px] border border-white/10 bg-white/[0.04] p-7 backdrop-blur-xl shadow-[0_16px_50px_rgba(0,0,0,0.14)]">
-              <div className="mb-6 flex items-center gap-4">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#2563eb] via-[#3b82f6] to-[#06b6d4] shadow-[0_12px_30px_rgba(37,99,235,0.30)]">
-                  <span
-                    className="text-xl font-bold text-white"
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  >
-                    OL
-                  </span>
-                </div>
+        {/* Description */}
 
-                <div>
-                  <h3
-                    className="text-2xl font-bold text-white"
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  >
-                    Oops Logic
-                  </h3>
-                  <p className="text-sm font-medium text-blue-300">
-                    Build • Learn • Grow
-                  </p>
-                </div>
-              </div>
+        <p className="mt-8 leading-8 text-slate-300">
 
-              <p className="mb-7 leading-7 text-slate-300">
-                Empowering careers and helping businesses grow through
-                industry-ready IT training, live projects, and modern software solutions.
-              </p>
+          Oops Logic delivers custom software development,
+          web applications,
+          mobile apps,
+          AI-powered solutions,
+          cloud services,
+          and industry-oriented IT training that helps
+          businesses grow faster and students build
+          successful technology careers.
 
-              <div className="mb-8 flex flex-wrap gap-3">
-                {socialLinks.map((social, index) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className={`flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 text-white transition-all duration-300 hover:-translate-y-1 hover:scale-105 ${
-                      index === 0
-                        ? 'bg-[#2563eb]/20 hover:bg-[#2563eb]'
-                        : index === 1
-                        ? 'bg-[#06b6d4]/20 hover:bg-[#06b6d4]'
-                        : index === 2
-                        ? 'bg-[#ec4899]/20 hover:bg-[#ec4899]'
-                        : 'bg-[#ef4444]/20 hover:bg-[#ef4444]'
-                    }`}
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </a>
-                ))}
-              </div>
+        </p>
 
-              <div className="space-y-4 rounded-2xl border border-white/10 bg-black/20 p-5">
-                <div className="flex items-start gap-3">
-                  <Phone className="mt-1 h-5 w-5 flex-shrink-0 text-blue-400" />
-                  <div>
-                    <div className="mb-1 text-sm text-slate-400">Phone</div>
-                    <a
-                      href="tel:+919876543210"
-                      className="font-medium text-slate-200 transition-colors hover:text-white"
-                    >
-                      +91 6369868846
-                    </a>
-                  </div>
-                </div>
+        {/* Divider */}
 
-                <div className="flex items-start gap-3">
-                  <Mail className="mt-1 h-5 w-5 flex-shrink-0 text-cyan-400" />
-                  <div>
-                    <div className="mb-1 text-sm text-slate-400">Email</div>
-                    <a
-                      href="mailto:oopslogictech@gmail.com"
-                      className="font-medium text-slate-200 transition-colors hover:text-white"
-                    >
-                      oopslogictech@gmail.com
-                    </a>
-                  </div>
-                </div>
+        <div className="my-8 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
-                <div className="flex items-start gap-3">
-                  <MapPin className="mt-1 h-5 w-5 flex-shrink-0 text-pink-400" />
-                  <div>
-                    <div className="mb-1 text-sm text-slate-400">Location</div>
-                    <div className="font-medium text-slate-200">
-                      Coimbatore, Tamil Nadu, India
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Technologies */}
 
-          {/* Services */}
-          <div className="lg:col-span-2">
-            <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
-              <h3
-                className="mb-6 text-lg font-bold text-white"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                Services
-              </h3>
+        <h4 className="font-semibold text-white">
 
-              <ul className="space-y-3">
-                {services.map((service) => (
-                  <li key={service}>
-                    <a
-                      href="#services"
-                      className="group inline-flex items-center gap-2 text-slate-300 transition-all duration-300 hover:text-blue-300"
-                    >
-                      <ChevronRight className="h-4 w-4 text-blue-400 transition-transform duration-300 group-hover:translate-x-1" />
-                      <span>{service}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          Technologies We Work With
 
-          {/* Courses */}
-          <div className="lg:col-span-2">
-            <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
-              <h3
-                className="mb-6 text-lg font-bold text-white"
-                style={{ fontFamily: 'var(--font-display)' }}
-              >
-                Courses
-              </h3>
+        </h4>
 
-              <ul className="space-y-3">
-                {courses.map((course) => (
-                  <li key={course}>
-                    <a
-                      href="#courses"
-                      className="group inline-flex items-center gap-2 text-slate-300 transition-all duration-300 hover:text-cyan-300"
-                    >
-                      <ChevronRight className="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:translate-x-1" />
-                      <span>{course}</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="mt-5 flex flex-wrap gap-3">
 
-          {/* Map Section */}
-          <div className="lg:col-span-4">
-            <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl">
-              <div className="mb-5 flex items-center justify-between gap-3">
-                <div>
-                  <h3
-                    className="text-lg font-bold text-white"
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  >
-                    Find Us
-                  </h3>
-                  <p className="mt-1 text-sm text-slate-400">
-                    Visit us for IT training and consultation
-                  </p>
-                </div>
+          {technologies.map((tech) => (
 
-                <a
-                  href="#contact"
-                  className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-300 transition-colors hover:bg-white/10 hover:text-white"
+            <span
+              key={tech}
+              className="
+                rounded-full
+                border border-cyan-400/20
+                bg-cyan-500/10
+                px-4
+                py-2
+                text-sm
+                text-cyan-300
+                transition-all
+                duration-300
+                hover:bg-cyan-500
+                hover:text-white
+                hover:scale-105
+              "
+            >
+              {tech}
+            </span>
+
+          ))}
+
+        </div>
+
+        {/* Social */}
+
+        <div className="mt-10">
+
+          <h4 className="mb-5 font-semibold text-white">
+
+            Follow Us
+
+          </h4>
+
+          <div className="flex flex-wrap gap-4">
+
+            {socialLinks.map((social, index) => {
+
+              const Icon = social.icon;
+
+              return (
+
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  whileHover={{
+                    y: -6,
+                    scale: 1.08,
+                  }}
+                  whileTap={{
+                    scale: 0.95,
+                  }}
+                  className={`
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    border
+                    border-white/10
+                    bg-white/5
+                    transition-all
+                    duration-300
+                    ${social.color}
+                  `}
                 >
-                  Directions
-                </a>
-              </div>
+                  <Icon size={20} />
+                </motion.a>
 
-              <div className="overflow-hidden rounded-[20px] border border-white/10 bg-black/20 p-2">
-                <div className="overflow-hidden rounded-[16px]">
-                  <iframe
-                    title="Oops Logic Location Map"
-                    src="https://www.google.com/maps?q=Coimbatore,Tamil%20Nadu,India&z=13&output=embed"
-                    width="100%"
-                    height="240"
-                    style={{ border: 0 }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
-              </div>
+              );
 
-              <div className="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
-                <p className="text-sm leading-6 text-slate-300">
-                  We support students, freshers, startups, and businesses with
-                  software services, IT training, live projects, and career guidance.
-                </p>
-              </div>
-            </div>
+            })}
+
           </div>
+
+        </div>
+
+      </div>
+
+    </motion.div>
+
+    {/* ========================================= */}
+    {/* PART 2 STARTS HERE */}
+        {/* ========================================= */}
+    {/* QUICK LINKS + SERVICES + COURSES */}
+    {/* ========================================= */}
+
+    {/* ========================================= */}
+{/* QUICK LINKS */}
+{/* ========================================= */}
+
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.15 }}
+  className="lg:col-span-1"
+>
+  <div className="rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl overflow-hidden">
+
+    {/* Top Border */}
+    <div className="h-2 bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600" />
+
+    <div className="p-8">
+
+      <div className="flex items-center gap-4 mb-8">
+
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-600">
+
+          <Globe className="text-white" size={28} />
+
+        </div>
+
+        <div>
+
+          <h3 className="text-2xl font-bold text-white">
+            Quick Links
+          </h3>
+
+          <p className="text-slate-400">
+            Navigate Website
+          </p>
+
+        </div>
+
+      </div>
+
+      <div className="space-y-3">
+
+        {quickLinks.map((item) => (
+
+          <a
+            key={item.name}
+            href={item.href}
+            className="group flex items-center justify-between rounded-2xl border border-transparent px-5 py-4 text-slate-300 transition-all duration-300 hover:border-cyan-500/20 hover:bg-cyan-500/10 hover:text-cyan-300"
+          >
+
+            <span className="font-medium">
+              {item.name}
+            </span>
+
+            <ChevronRight
+              size={18}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+
+          </a>
+
+        ))}
+
+      </div>
+
+      {/* Divider */}
+
+      <div className="my-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+      {/* CTA */}
+
+      
+
+    </div>
+
+  </div>
+</motion.div>
+
+    {/* ========================================= */}
+    {/* PART 3 STARTS HERE */}
+        {/* ========================================= */}
+    {/* CONTACT + MAP */}
+    {/* ========================================= */}
+
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.25 }}
+      className="lg:col-span-1"
+    >
+
+      
+        {/* Google Map */}
+
+        <div className="overflow-hidden rounded-[32px] border border-white/10 bg-white/5 backdrop-blur-xl">
+
+          <div className="border-b border-white/10 p-6">
+
+            <h3 className="text-xl font-bold text-white">
+              Visit Our Office
+            </h3>
+
+            <p className="mt-2 text-slate-400">
+              We'd love to meet you.
+            </p>
+
+          </div>
+
+          <iframe
+            title="Oops Logic Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14176.120840595482!2d76.97238475084308!3d11.01754121487953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba85834f5cda3a9%3A0x25d87d9b5778aeb6!2sGrand%20CAG%20Central!5e1!3m2!1sen!2sin!4v1784189971813!5m2!1sen!2sin"
+            loading="lazy"
+            className="h-72 w-full"
+          />
+
         </div>
 
       
-        
-      </div>
+
+    </motion.div>
+
+  </div>
+
+</section>
+
+
+      {/* ================= COPYRIGHT ================= */}
+
+      <section className="border-t border-white/10 bg-black/20">
+
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-8 lg:flex-row">
+
+          <div>
+
+            <h4 className="text-lg font-semibold text-white">
+
+              © {currentYear} Oops Logic
+
+            </h4>
+
+            <p className="mt-2 text-sm text-slate-400">
+
+              Software Development • IT Training • AI Solutions •
+              Career Development
+
+            </p>
+
+          </div>
+
+          <div className="flex flex-wrap items-center gap-6 text-sm">
+
+            <a
+              href="#"
+              className="text-slate-400 transition hover:text-cyan-300"
+            >
+              Privacy Policy
+            </a>
+
+            <a
+              href="#"
+              className="text-slate-400 transition hover:text-cyan-300"
+            >
+              Terms & Conditions
+            </a>
+<a
+  href="https://www.google.com/maps/place/Grand+CAG+Central/@11.0175412,76.9723848,3255m/data=!3m1!1e3!4m6!3m5!1s0x3ba85834f5cda3a9:0x25d87d9b5778aeb6!8m2!3d11.0175413!4d76.9914391!16s%2Fg%2F11b81s18qj?entry=ttu&g_ep=EgoyMDI2MDcxNC4wIKXMDSoASAFQAw%3D%3D"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-slate-400 transition hover:text-cyan-300"
+>
+  View Location
+</a>
+
+          </div>
+
+          {/* Back To Top */}
+
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+            className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 shadow-xl shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-2 hover:scale-110"
+          >
+
+            <ArrowUp size={22} />
+
+          </button>
+
+        </div>
+
+      </section>
+</div>
     </footer>
   );
 }
