@@ -250,33 +250,13 @@ export default function Footer() {
 
               return (
 
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  whileHover={{
-                    y: -6,
-                    scale: 1.08,
-                  }}
-                  whileTap={{
-                    scale: 0.95,
-                  }}
-                  className={`
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-white/5
-                    transition-all
-                    duration-300
-                    ${social.color}
-                  `}
-                >
-                  <Icon size={20} />
-                </motion.a>
+            
+<Link
+  to={social.href}
+  className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5"
+>
+  <Icon size={20} />
+</Link>
 
               );
 
@@ -340,22 +320,12 @@ export default function Footer() {
 
         {quickLinks.map((item) => (
 
-          <a
-            key={item.name}
-            href={item.href}
-            className="group flex items-center justify-between rounded-2xl border border-transparent px-5 py-4 text-slate-300 transition-all duration-300 hover:border-cyan-500/20 hover:bg-cyan-500/10 hover:text-cyan-300"
-          >
-
-            <span className="font-medium">
-              {item.name}
-            </span>
-
-            <ChevronRight
-              size={18}
-              className="transition-transform duration-300 group-hover:translate-x-1"
-            />
-
-          </a>
+<Link
+  to={item.href}
+  className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5"
+>
+  <Icon size={20} />
+</Link>
 
         ))}
 
