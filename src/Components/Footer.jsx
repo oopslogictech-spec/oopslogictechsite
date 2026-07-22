@@ -13,7 +13,7 @@ import {
   Users,
   ArrowUp,
 } from "lucide-react";
-
+import { Link } from "react-router-dom";
 import {
   FaInstagram,
   FaFacebookF,
@@ -22,7 +22,7 @@ import {
 } from "react-icons/fa";
 
 import { motion } from "framer-motion";
-
+import OopsLogicLogo from "../assets/OopsLogicLogo.png";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -71,17 +71,17 @@ export default function Footer() {
     },
     {
       icon: FaFacebookF,
-      href: "#",
+      href: "https://www.facebook.com/",
       color: "hover:bg-blue-600",
     },
     {
       icon: FaLinkedinIn,
-      href: "#",
+      href: "https://www.linkedin.com/company/oops-logic-technologies-and-learning-center",
       color: "hover:bg-sky-600",
     },
     {
       icon: FaYoutube,
-      href: "#",
+      href: "https://youtube.com/@oopslogic-t2n?si=QRJV-xmqVBm8cz3l",
       color: "hover:bg-red-600",
     },
  
@@ -143,25 +143,15 @@ export default function Footer() {
         {/* Logo */}
 
         <div className="flex items-center gap-5">
-
-          <div
-            className="
-            flex h-20 w-20 items-center justify-center
-            rounded-3xl
-            bg-gradient-to-br
-            from-cyan-500
-            via-blue-600
-            to-violet-600
-            shadow-2xl
-            shadow-cyan-500/20
-            transition
-            duration-500
-            group-hover:rotate-6
-            group-hover:scale-105
-          "
-          >
-            <Code2 size={34} className="text-white" />
-          </div>
+<div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br from-cyan-500 via-blue-600 to-violet-600 shadow-2xl">
+  <img
+    src={OopsLogicLogo}
+    alt="Oops Logic"
+    className="w-14 h-14 object-contain"
+  />
+</div>
+            
+          
 
           <div>
 
@@ -251,12 +241,21 @@ export default function Footer() {
               return (
 
             
-<Link
-  to={social.href}
-  className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5"
+<motion.a
+  key={index}
+  href={social.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  whileHover={{ y: -6, scale: 1.08 }}
+  whileTap={{ scale: 0.95 }}
+  className={`
+    flex h-14 w-14 items-center justify-center
+    rounded-2xl border border-white/10 bg-white/5
+    transition-all duration-300 ${social.color}
+  `}
 >
   <Icon size={20} />
-</Link>
+</motion.a>
 
               );
 
@@ -317,17 +316,22 @@ export default function Footer() {
       </div>
 
       <div className="space-y-3">
+{quickLinks.map((item) => (
 
-        {quickLinks.map((item) => (
+  <Link
+    key={item.name}
+    to={item.href}
+    className="group flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-5 py-4 transition hover:border-cyan-500 hover:bg-cyan-500/10"
+  >
+    <span>{item.name}</span>
 
-<Link
-  to={item.href}
-  className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5"
->
-  <Icon size={20} />
-</Link>
+    <ChevronRight
+      size={18}
+      className="transition group-hover:translate-x-1"
+    />
+  </Link>
 
-        ))}
+))}
 
       </div>
 

@@ -8,13 +8,13 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Courses from "./pages/Courses";
 import Contacts from "./pages/Contacts";
-
+import ScrollToTop from "./Components/ScrollToTop";
 export default function App() {
   return (
     <div className="min-h-screen bg-[#050816] text-white overflow-x-hidden">
 
       <Navbar />
-
+ <ScrollToTop />
       <Routes>
 
         <Route
